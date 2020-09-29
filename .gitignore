@@ -1,1 +1,5 @@
 node_modules
+garbage
+
+env/development.env
+env/test.env
