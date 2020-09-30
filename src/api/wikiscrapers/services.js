@@ -5,19 +5,19 @@ const axios = require("axios")
 const scrapper = require("./scrapper")
 
 const getDefinition = async () => {
-    axios
+    return axios
         .get("https://fr.wiktionary.org/wiki/morse")
         .then((response) => {
             const $ = cheerio.load(response.data)
-            logger.info(scrapper.getEtymology($))
+            return factory($)
         })
-        .catch((err) => {
-            logger.info(err)
-        })
+        .catch((err) => err)
+}
 
-    return new Promise((resolve) => {
-        resolve("lel")
-    })
+const factory = ($) => {
+    return {
+        etymologies: scrapper.getEtymology($),
+    }
 }
 
 module.exports = { getDefinition }

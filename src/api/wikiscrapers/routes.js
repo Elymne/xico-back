@@ -1,10 +1,11 @@
 const router = require("express").Router()
-const dogService = require("./services")
+const service = require("./services")
 
-router.get("/test", (request, response) => {
-    response.json({
-        message: dogService.getDefinition(),
-    })
+router.get("/test", (_, response) => {
+    service
+        .getDefinition()
+        .then((result) => response.status(200).send(result))
+        .catch((err) => response.status(404).send(err))
 })
 
 module.exports = router
