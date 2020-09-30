@@ -42,7 +42,7 @@ const getSingularPluralPronunciation = ($) => {
     return result
 }
 
-const getEtymology = ($) => {
+const getEtymologies = ($) => {
     const result = []
 
     $("dl").each((index, element) => {
@@ -58,4 +58,24 @@ const getEtymology = ($) => {
     return result
 }
 
-module.exports = { getName, getSingularPluralPronunciation, getEtymology }
+const getImagesUrl = ($) => {
+    const result = []
+
+    $("a.image").each((index, element) => {
+        result[index] = $(element).find("img").attr("src").substring(2)
+    })
+
+    return result
+}
+
+const getGender = ($) => {
+    let result = null
+
+    $("div p span i").each((index, element) => {
+        if (index === 0) result = $(element).text()
+    })
+
+    return result
+}
+
+module.exports = { getName, getSingularPluralPronunciation, getEtymologies, getImagesUrl, getGender }

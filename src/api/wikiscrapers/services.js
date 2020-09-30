@@ -17,7 +17,9 @@ const factory = ($) => {
     return {
         name: scrapperFR.getName($),
         info: scrapperFR.getSingularPluralPronunciation($),
-        etymologies: scrapperFR.getEtymology($),
+        etymologies: scrapperFR.getEtymologies($),
+        images: scrapperFR.getImagesUrl($),
+        gender: scrapperFR.getGender($),
     }
 }
 
