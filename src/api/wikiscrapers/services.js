@@ -1,8 +1,7 @@
 const cheerio = require("cheerio")
-const logger = require("./../../configurations/logger")
 const axios = require("axios")
 
-const scrapper = require("./scrapper")
+const scrapperFR = require("./scrapperFR")
 
 const getDefinition = async () => {
     return axios
@@ -16,7 +15,9 @@ const getDefinition = async () => {
 
 const factory = ($) => {
     return {
-        etymologies: scrapper.getEtymology($),
+        name: scrapperFR.getName($),
+        info: scrapperFR.getSingularPluralPronunciation($),
+        etymologies: scrapperFR.getEtymology($),
     }
 }
 
