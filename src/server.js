@@ -6,6 +6,7 @@ const cors = require("cors")
 const expressSwagger = require("express-swagger-generator")(app)
 
 const { defaultRoutes } = require("./api/default")
+const { dogRoutes } = require("./api/wikiscrapers")
 
 // Swagger options.
 let swaggerDefinition = {
@@ -39,6 +40,8 @@ app.use(
 )
 
 // Routing.
+app.use("/wiki", dogRoutes)
+
 app.use("", defaultRoutes)
 
 module.exports = app
