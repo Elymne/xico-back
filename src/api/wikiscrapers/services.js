@@ -8,6 +8,7 @@ const getDefinition = async () => {
         .get("https://fr.wiktionary.org/wiki/morse")
         .then((response) => {
             const $ = cheerio.load(response.data)
+            scrapperFR.test($)
             return factory($)
         })
         .catch((err) => err)

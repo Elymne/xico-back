@@ -1,3 +1,5 @@
+const logger = require("./../../configurations/logger")
+
 const getName = ($) => {
     return $("#firstHeading").text()
 }
@@ -78,4 +80,10 @@ const getGender = ($) => {
     return result
 }
 
-module.exports = { getName, getSingularPluralPronunciation, getEtymologies, getImagesUrl, getGender }
+const test = ($) => {
+    $("*").each((index, element) => {
+        logger.info(`Element n°${index}, element details : ${$(element).text()}`)
+    })
+}
+
+module.exports = { getName, getSingularPluralPronunciation, getEtymologies, getImagesUrl, getGender, test }
