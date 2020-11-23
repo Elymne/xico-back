@@ -1,11 +1,11 @@
-const cheerio = require("cheerio")
-const axios = require("axios")
+const cheerio = require('cheerio')
+const axios = require('axios')
 
-const scrapperFR = require("./scrapperFR")
+const scrapperFR = require('./scrapperFR')
 
 const getDefinition = async () => {
     return axios
-        .get("https://fr.wiktionary.org/wiki/morse")
+        .get('https://fr.wiktionary.org/wiki/morse')
         .then((response) => {
             const $ = cheerio.load(response.data)
             scrapperFR.test($)

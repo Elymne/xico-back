@@ -1,31 +1,32 @@
-const express = require("express")
+const express = require('express')
 const app = express()
-const bodyParser = require("body-parser")
-const cookieParser = require("cookie-parser")
-const cors = require("cors")
-const expressSwagger = require("express-swagger-generator")(app)
+const bodyParser = require('body-parser')
+const cookieParser = require('cookie-parser')
+const cors = require('cors')
+const expressSwagger = require('express-swagger-generator')(app)
 
-const { defaultRoutes } = require("./api/default")
-const { dogRoutes } = require("./api/wikiscrapers")
+const { defaultRoutes } = require('./api/default')
+//const { dogRoutes } = require('./api/wikiscrapers')
+const { routesDefinitions } = require('./api/definition')
 
 // Swagger options.
 let swaggerDefinition = {
     info: {
-        description: "This is a sample server for xico backend",
-        title: "Swagger",
-        version: "0.0.0",
+        description: 'This is a sample server for xico backend',
+        title: 'Swagger',
+        version: '0.0.0',
     },
     host: `${process.env.HOST}:${process.env.PORT}`,
-    basePath: "/",
-    produces: ["application/json"],
-    schemes: ["http", "https"],
+    basePath: '/',
+    produces: ['application/json'],
+    schemes: ['http', 'https'],
 }
 
 // server options
 let options = {
     swaggerDefinition: swaggerDefinition,
     basedir: __dirname, //app absolute path
-    files: ["./**/**/*.js"], //Path to the API handle folder
+    files: ['./**/**/*.js'], //Path to the API handle folder
 }
 expressSwagger(options)
 
@@ -40,8 +41,8 @@ app.use(
 )
 
 // Routing.
-app.use("/wiki", dogRoutes)
-
-app.use("", defaultRoutes)
+//app.use("/wiki", dogRoutes)
+app.use('/definitions', routesDefinitions)
+app.use('', defaultRoutes)
 
 module.exports = app
